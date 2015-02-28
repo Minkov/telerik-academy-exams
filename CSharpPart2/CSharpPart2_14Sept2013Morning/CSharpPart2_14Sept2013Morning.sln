@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. MultiverseCommunication", "MultiverseCommunication\1. MultiverseCommunication.csproj", "{6AC93A79-C4E5-4949-987F-880DEDAE4E95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. MagicWords", "MagicWords\2. MagicWords.csproj", "{A19D34D2-364A-4E58-9F70-DE327A34AA64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,8 +15,12 @@ Global
 		{6AC93A79-C4E5-4949-987F-880DEDAE4E95}.Debug|x86.Build.0 = Debug|x86
 		{6AC93A79-C4E5-4949-987F-880DEDAE4E95}.Release|x86.ActiveCfg = Release|x86
 		{6AC93A79-C4E5-4949-987F-880DEDAE4E95}.Release|x86.Build.0 = Release|x86
+		{A19D34D2-364A-4E58-9F70-DE327A34AA64}.Debug|x86.ActiveCfg = Debug|x86
+		{A19D34D2-364A-4E58-9F70-DE327A34AA64}.Debug|x86.Build.0 = Debug|x86
+		{A19D34D2-364A-4E58-9F70-DE327A34AA64}.Release|x86.ActiveCfg = Release|x86
+		{A19D34D2-364A-4E58-9F70-DE327A34AA64}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MultiverseCommunication\1. MultiverseCommunication.csproj
+		StartupItem = MagicWords\2. MagicWords.csproj
 	EndGlobalSection
 EndGlobal
