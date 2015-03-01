@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.IO;
 
-namespace CSharpPart2_22Jan2014Evening
+namespace BunnyFactory
 {
-	class MainClass
+	class BunnyFactorySolution
 	{
 		static string testInput = @"3
 2
@@ -24,55 +24,50 @@ namespace CSharpPart2_22Jan2014Evening
 END";
 
 
-		static List<int> ReadInput()
+		static List<int> ReadInput ()
 		{
 			List<int> rabits = new List<int> ();
 			string line = Console.ReadLine ();
-			while (line != "END") 
-			{
-				rabits.Add(int.Parse(line));
+			while (line != "END") {
+				rabits.Add (int.Parse (line));
 				line = Console.ReadLine ();
 			}
 			rabits.Reverse ();
 			return rabits;
 		}
 
-		static int Sum(List<int> rabits, int from, int to)
+		static int Sum (List<int> rabits, int from, int to)
 		{
 			int sum = 0;
-			for (int i = from; i <= to; i++) 
-			{
+			for (int i = from; i <= to; i++) {
 				sum += rabits [i];
 			}
 			return sum;
 		}
 
-		static List<int> GetDigits(BigInteger number)
+		static List<int> GetDigits (BigInteger number)
 		{
 			List<int> digits = new List<int> ();
 			while (number > 0) {
-				int digit =(int) (number % 10);
+				int digit = (int)(number % 10);
 				number /= 10;
-				if (digit != 0 && digit != 1) 
-				{
+				if (digit != 0 && digit != 1) {
 					digits.Add (digit);
 				}
 			}
 			return digits;
 		}
 
-		static bool PerformMultiplication(List<int> numbers, int count)
+		static bool PerformMultiplication (List<int> numbers, int count)
 		{
-			if (numbers.Count < count) 
-			{
+			if (numbers.Count < count) {
 				return false;
 			}
 
-			int s = Sum (numbers, numbers.Count - count,  numbers.Count - 1);
+			int s = Sum (numbers, numbers.Count - count, numbers.Count - 1);
 
 
-			if (numbers.Count < s + count) 
-			{
+			if (numbers.Count < s + count) {
 				return false;
 			}
 				
@@ -80,11 +75,10 @@ END";
 		
 			BigInteger product = 1;
 
-			int from = numbers.Count - s - count ;
+			int from = numbers.Count - s - count;
 			int to = numbers.Count - count - 1;
 
-			for (int i = from; i <= to; i++) 
-			{
+			for (int i = from; i <= to; i++) {
 				int number = numbers [i];
 				sum += number;
 				product *= number;
@@ -94,16 +88,15 @@ END";
 			numbers.RemoveRange (numbers.Count - s, s);
 
 			numbers.AddRange (GetDigits (product));
-			numbers.AddRange (GetDigits(sum));
+			numbers.AddRange (GetDigits (sum));
 
 			return true;	
 		}
 
-		static List<int> SplitDigitsAndRemoveZeroesAndOnes(List<int> rabits)
+		static List<int> SplitDigitsAndRemoveZeroesAndOnes (List<int> rabits)
 		{
 			List<int> numbers = new List<int> ();
-			for (int i = 0; i < rabits.Count; i++) 
-			{
+			for (int i = 0; i < rabits.Count; i++) {
 				int rabit = rabits [i];
 				numbers.AddRange (GetDigits (rabit));
 			}
@@ -120,10 +113,8 @@ END";
 			int index = 1;
 
 			bool isInitial = true;
-			while (PerformMultiplication (rabits, index)) 
-			{
-				if (isInitial) 
-				{
+			while (PerformMultiplication (rabits, index)) {
+				if (isInitial) {
 					isInitial = false;
 					rabits = SplitDigitsAndRemoveZeroesAndOnes (rabits);
 				}
