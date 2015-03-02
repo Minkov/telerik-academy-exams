@@ -26,35 +26,28 @@ namespace GreedyDrarf
 			int n = int.Parse (Console.ReadLine ());
 			bool isFirstCoins = true;
 			int max = 0;
-			for (int i = 0; i < n; i++) 
-			{
+			for (int i = 0; i < n; i++) {
 				int[] pattern = Console.ReadLine ()
-									   .Split (separators, StringSplitOptions.RemoveEmptyEntries)
-									   .Select (int.Parse )
-									   .ToArray ();
+					.Split (separators, StringSplitOptions.RemoveEmptyEntries)
+					.Select (int.Parse)
+					.ToArray ();
+
 				int index = 0;
 				int coins = 0;
 				int patternIndex = 0;
+
 				bool[] isVisited = new bool[valley.Length];
-				while (true) 
-				{
+				while (0 <= index && index < valley.Length && !isVisited [index]) {
+					isVisited [index] = true;
+					coins += valley [index];
 					index += pattern [patternIndex];
 					patternIndex++;
 					patternIndex %= pattern.Length;
-					if (index < 0 || valley.Length <= index || isVisited[index]) 
-					{
-						break;
-					}
-					coins += valley [index];
-					isVisited [index] = true;
 				}
-				if (isFirstCoins) 
-				{
+				if (isFirstCoins) {
 					isFirstCoins = false;
 					max = coins;
-				}
-				else if (max < coins) 
-				{
+				} else if (max < coins) {
 					max = coins;
 				}
 			}
