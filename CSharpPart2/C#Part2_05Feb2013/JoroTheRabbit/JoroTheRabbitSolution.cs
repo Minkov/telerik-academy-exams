@@ -24,21 +24,19 @@ namespace JoroTheRabbit
 					int lenght = 1;
 					int pos = startPos;
 					int prev = terrain [pos];
-//					bool[] isVisited = new bool[terrain.Length];
+					bool[] isVisited = new bool[terrain.Length];
 
-					while (true) 
-					{
+					while (true) {
 						pos += step;
 						pos %= terrain.Length;
 						int next = terrain [pos];
 
-//						if (next <= prev || isVisited [pos]) 
-						if (next <= prev) 
-						{
+						if (next <= prev || isVisited [pos])
+						if (next <= prev) {
 							break;
 						}
 
-//						isVisited [pos] = true;
+						isVisited [pos] = true;
 						prev = next;
 						++lenght;
 					}

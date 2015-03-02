@@ -23,6 +23,7 @@ namespace GreedyDrarf
 							      .Split (separators, StringSplitOptions.RemoveEmptyEntries)
 								  .Select (int.Parse)
 							 	  .ToArray ();
+
 			int n = int.Parse (Console.ReadLine ());
 			bool isFirstCoins = true;
 			int max = 0;
