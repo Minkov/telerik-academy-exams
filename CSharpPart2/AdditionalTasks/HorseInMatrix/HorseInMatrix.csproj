@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{452C0E08-804F-47FC-8EC1-8D1CF181C11B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HorseInMatrix</RootNamespace>
+    <AssemblyName>HorseInMatrix</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HorseInMatrixSolution.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="tests\test-001.in" />
+    <None Include="tests\test-001.out" />
+    <None Include="tests\test-002.in" />
+    <None Include="tests\test-002.out" />
+    <None Include="tests\test-003.in" />
+    <None Include="tests\test-003.out" />
+    <None Include="tests\test-004.in" />
+    <None Include="tests\test-004.out" />
+    <None Include="tests\test-005.in" />
+    <None Include="tests\test-005.out" />
+    <None Include="tests\test-006.in" />
+    <None Include="tests\test-006.out" />
+    <None Include="tests\test-007.in" />
+    <None Include="tests\test-007.out" />
+    <None Include="tests\test-008.in" />
+    <None Include="tests\test-008.out" />
+    <None Include="tests\test-009.in" />
+    <None Include="tests\test-009.out" />
+    <None Include="tests\test-010.in" />
+    <None Include="tests\test-010.out" />
+    <None Include="tests\test-011.in" />
+    <None Include="tests\test-011.out" />
+    <None Include="tests\test-012.in" />
+    <None Include="tests\test-012.out" />
+    <None Include="tests\test-013.in" />
+    <None Include="tests\test-013.out" />
+    <None Include="tests\test-014.in" />
+    <None Include="tests\test-014.out" />
+    <None Include="tests\test-015.in" />
+    <None Include="tests\test-015.out" />
+    <None Include="tests\test-016.in" />
+    <None Include="tests\test-016.out" />
+    <None Include="tests\test-017.in" />
+    <None Include="tests\test-017.out" />
+    <None Include="tests\test-018.in" />
+    <None Include="tests\test-018.out" />
+    <None Include="tests\test-019.in" />
+    <None Include="tests\test-019.out" />
+    <None Include="tests\test-020.in" />
+    <None Include="tests\test-020.out" />
+  </ItemGroup>
+</Project>
