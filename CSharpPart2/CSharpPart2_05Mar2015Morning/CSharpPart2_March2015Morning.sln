@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1. MathProblem", "MathProblem\1. MathProblem.csproj", "{164853B0-9429-4A53-A565-EB172607E6EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. SumOfDifferences", "SumOfDifferences\2. SumOfDifferences.csproj", "{A427EC09-7997-41F4-B625-4597A7E9DA12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. BishopPathFinder", "BishopPathFinder\3. BishopPathFinder.csproj", "{D77ECE30-2470-4F2E-B2A2-56CA43B12793}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{164853B0-9429-4A53-A565-EB172607E6EA}.Debug|x86.ActiveCfg = Debug|x86
+		{164853B0-9429-4A53-A565-EB172607E6EA}.Debug|x86.Build.0 = Debug|x86
+		{164853B0-9429-4A53-A565-EB172607E6EA}.Release|x86.ActiveCfg = Release|x86
+		{164853B0-9429-4A53-A565-EB172607E6EA}.Release|x86.Build.0 = Release|x86
+		{A427EC09-7997-41F4-B625-4597A7E9DA12}.Debug|x86.ActiveCfg = Debug|x86
+		{A427EC09-7997-41F4-B625-4597A7E9DA12}.Debug|x86.Build.0 = Debug|x86
+		{A427EC09-7997-41F4-B625-4597A7E9DA12}.Release|x86.ActiveCfg = Release|x86
+		{A427EC09-7997-41F4-B625-4597A7E9DA12}.Release|x86.Build.0 = Release|x86
+		{D77ECE30-2470-4F2E-B2A2-56CA43B12793}.Debug|x86.ActiveCfg = Debug|x86
+		{D77ECE30-2470-4F2E-B2A2-56CA43B12793}.Debug|x86.Build.0 = Debug|x86
+		{D77ECE30-2470-4F2E-B2A2-56CA43B12793}.Release|x86.ActiveCfg = Release|x86
+		{D77ECE30-2470-4F2E-B2A2-56CA43B12793}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MathProblem\1. MathProblem.csproj
+	EndGlobalSection
+EndGlobal
