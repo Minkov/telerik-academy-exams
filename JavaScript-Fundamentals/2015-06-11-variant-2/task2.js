@@ -1,4 +1,8 @@
+/* globals console */
+
 function solve(args) {
+    "use strict";
+
     const rows = +args[0],
         cols = +args[1];
 
@@ -62,7 +66,7 @@ function solve(args) {
         for (let knightMove of knightMoves) {
             let newRow = fromRow + knightMove[0];
             let newCol = fromCol + knightMove[1];
-            if (newRow === toRow && newCol === toRow) {
+            if (newRow === toRow && newCol === toCol) {
                 return true;
             }
         }
@@ -70,22 +74,28 @@ function solve(args) {
     }
 
     function checkQueen(fromRow, fromCol, toRow, toCol, board) {
-        if (Math.abs(fromRow - toRow) !== Math.abs(fromCol - toCol)) {
-            return false;
-        }
-
         let queenMoves = [
             [1, 1],
             [1, -1],
             [-1, 1],
-            [-1, -1]
+            [-1, -1],
+            [1, 0],
+            [-1, 0],
+            [0, 1],
+            [0, -1]
         ];
 
         let dir = getDirection(fromRow, fromCol, toRow, toCol);
 
         let row = fromRow + queenMoves[dir][0],
             col = fromCol + queenMoves[dir][1];
-        while (row !== toRow && col !== toCol) {
+        while (true) {
+            if ((row === toRow && fromRow !== toRow) ||
+                (col === toCol && fromCol !== toCol) ||
+                row < 0 || row > rows ||
+                col < 0 || col > cols) {
+                break;
+            }
             let piece = board[row][col];
             if (!isEmpty(piece)) {
                 return false;
@@ -102,19 +112,28 @@ function solve(args) {
     }
 
     function getDirection(fromRow, fromCol, toRow, toCol) {
-        if (fromRow < toRow) {
+        if (fromRow === toRow) {
+            if (fromCol < toCol) {
+                return 6;
+            } else {
+                return 7;
+            }
+        } else if (fromCol === toCol) {
+            if (fromRow < toRow) {
+                return 4;
+            } else {
+                return 5;
+            }
+        } else if (fromRow < toRow) {
             if (fromCol < toCol) {
                 return 0;
-            }
-            else {
+            } else {
                 return 1;
             }
-        }
-        else {
+        } else {
             if (fromCol < toCol) {
                 return 2;
-            }
-            else {
+            } else {
                 return 3;
             }
         }
