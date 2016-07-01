@@ -1,123 +1,114 @@
 function solve(args) {
+    "use strict";
+
     const rows = +args[0],
         cols = +args[1];
 
-    let board = args.slice(2, 2 + rows);
-    let moves = args.slice(3 + rows).map(move => move.split(' '));
+    const board = args.slice(2, rows + 2);
+
+    let moves = args.slice(rows + 2 + 1)
+        .map(moveString => {
+            var parts = moveString.split(" ");
+            return {
+                "fromRow": getRowIndex(parts[0][1]),
+                "fromCol": getColumnIndex(parts[0][0]),
+
+                "toRow": getRowIndex(parts[1][1]),
+                "toCol": getColumnIndex(parts[1][0])
+            };
+        });
 
     moves.forEach(move => {
-        let fromCol = getRow(move[0][0]);
-        let fromRow = getCol(move[0][1]);
+        let fromPiece = board[move.fromRow][move.fromCol],
+            toPiece = board[move.toRow][move.toCol];
 
-        let toCol = getRow(move[1][0]);
-        let toRow = getCol(move[1][1]);
-
-        let piece = board[fromRow][fromCol];
-
-        if (isKnight(piece)) {
-            if (isEmpty(board[toRow][toCol]) && checkKnight(fromRow, fromCol, toRow, toCol)) {
+        if (isQueen(fromPiece)) {
+            if (isEmpty(toPiece) && checkQueen(move)) {
                 console.log("yes");
-            }
-            else {
+            } else {
                 console.log("no");
             }
-        }
-        else if (isQueen(piece)) {
-            if (isEmpty(board[toRow][toCol]) && checkQueen(fromRow, fromCol, toRow, toCol, board)) {
+        } else if (isKnight(fromPiece)) {
+            if (isEmpty(toPiece) && checkKnight(move)) {
                 console.log("yes");
-            }
-            else {
+            } else {
                 console.log("no");
             }
-        }
-        else {
+        } else {
+            //empty
             console.log("no");
-            return;
         }
-
     });
 
-    function getCol(colName) {
-        return rows - colName;
+    function getRowIndex(rowName) {
+        return rows - rowName;
     }
 
-    function getRow(rowName) {
-        const startCharCode = "a".charCodeAt(0);
-        var code = rowName.charCodeAt(0);
-        return code - startCharCode;
+    function getColumnIndex(columnName) {
+        let value = columnName.charCodeAt(0);
+        return value - "a".charCodeAt(0);
     }
 
-    function isKnight(piece) {
-        return piece === "K";
-    }
-    function isQueen(piece) {
-        return piece === "Q";
-    }
-    function isEmpty(piece) {
-        return piece === "-";
+    function isKnight(fromPiece) {
+        return fromPiece === "K";
     }
 
-    function checkKnight(fromRow, fromCol, toRow, toCol) {
-        const knightMoves = [[-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1]];
-        for (let knightMove of knightMoves) {
-            let newRow = fromRow + knightMove[0];
-            let newCol = fromCol + knightMove[1];
-            if (newRow === toRow && newCol === toRow) {
+    function isQueen(fromPiece) {
+        return fromPiece === "Q";
+    }
+
+    function isEmpty(fromPiece) {
+        return fromPiece === "-";
+    }
+
+    function checkQueen(move) {
+        let deltaRow = getDelta(move.fromRow, move.toRow),
+            deltaCol = getDelta(move.fromCol, move.toCol);
+
+        let row = move.fromRow,
+            col = move.fromCol;
+
+        while (true) {
+            row += deltaRow;
+            col += deltaCol;
+
+            if (!board[row] || !board[row][col]) {
+                return false;
+            }
+
+            if (!isEmpty(board[row][col])) {
+                return false;
+            }
+
+            if (move.toRow === row && move.toCol === col) {
                 return true;
             }
         }
-        return false;
     }
 
-    function checkQueen(fromRow, fromCol, toRow, toCol, board) {
-        if (Math.abs(fromRow - toRow) !== Math.abs(fromCol - toCol)) {
-            return false;
-        }
+    function getDelta(from, to) {
+        return (from > to)
+            ? -1
+            : (from < to)
+                ? +1
+                : 0;
 
-        let queenMoves = [
-            [1, 1],
-            [1, -1],
-            [-1, 1],
-            [-1, -1]
+    }
+
+    function checkKnight(move) {
+        const deltas = [
+            [-2, 1], [-1, 2], [1, 2], [2, 1],
+            [2, -1], [1, -2], [-1, -2], [-2, -1]
         ];
 
-        let dir = getDirection(fromRow, fromCol, toRow, toCol);
+        return deltas.find(delta => {
+            let row = move.fromRow + delta[0],
+                col = move.fromCol + delta[1];
 
-        let row = fromRow + queenMoves[dir][0],
-            col = fromCol + queenMoves[dir][1];
-        while (row !== toRow && col !== toCol) {
-            let piece = board[row][col];
-            if (!isEmpty(piece)) {
-                return false;
-            }
-            row += queenMoves[dir][0];
-            col += queenMoves[dir][1];
-        }
-        if (row === toRow && col === toCol) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    function getDirection(fromRow, fromCol, toRow, toCol) {
-        if (fromRow < toRow) {
-            if (fromCol < toCol) {
-                return 0;
-            }
-            else {
-                return 1;
-            }
-        }
-        else {
-            if (fromCol < toCol) {
-                return 2;
-            }
-            else {
-                return 3;
-            }
-        }
+            return (row === move.toRow && col === move.toCol)
+                ? true
+                : false;
+        });
     }
 }
 
