@@ -1,3 +1,4 @@
+/* globals console */
 function solve(args) {
     "use strict";
 
@@ -9,6 +10,7 @@ function solve(args) {
     let moves = args.slice(rows + 2 + 1)
         .map(moveString => {
             var parts = moveString.split(" ");
+            
             return {
                 "fromRow": getRowIndex(parts[0][1]),
                 "fromCol": getColumnIndex(parts[0][0]),
