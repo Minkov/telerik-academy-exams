@@ -1,0 +1,78 @@
+/* globals module, console */
+
+function solve(args) {
+    "use strict";
+
+    let selectors = [];
+    let current = null;
+
+    for (let line of args) {
+        line = line.trim();
+
+        if (isSelector(line)) {
+            //begin selector {
+            line = line.substr(0, line.length - 1)
+                .trim();
+
+            line = line.replace(/\s\s+/, " ");
+
+            let selector = line;
+
+            if (current) {
+                if (selector.indexOf("$") >= 0) {
+                    selector = selector.substr(1);
+                    selector = current.selector + selector;
+                } else {
+                    selector = current.selector + " " + selector;
+                }
+            }
+
+            let newSelector = {
+                selector: selector,
+                parent: current,
+                properties: []
+            };
+
+            selectors.push(newSelector);
+
+            current = newSelector;
+        } else if (line.indexOf(":") >= 0) {
+            //property
+
+            //|key    :      value     ;|
+            line = line.substr(0, line.length - 1);
+            //|key    :      value     |
+            let keyValue = line.split(":");
+            //["    key   ", "   value   "]
+
+            let propertyValue = {
+                key: keyValue[0].trim(),
+                value: keyValue[1].trim()
+            };
+            current.properties.push(propertyValue);
+        } else {
+            //end selector }
+            current = current.parent;
+        }
+    }
+
+    for (let selector of selectors) {
+        console.log(selector.selector + " {");
+
+        //print properties
+        for (let keyValue of selector.properties) {
+            console.log("  " + keyValue.key + ": " + keyValue.value + ";");
+        }
+
+        console.log("}");
+    }
+
+    function isSelector(line) {
+        return line.indexOf("{") >= 0;
+    }
+
+    function isProperty(line) {
+        return line.indexOf(":") >= 0;
+    }
+}
+module.exports = solve;

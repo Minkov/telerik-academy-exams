@@ -1,32 +1,32 @@
+/* globals console, module */
+
 function solve(args) {
-    let initialHeights = args[0].split(' ').map(Number);
+    "use strict";
+    var heights = args[0].split(" ")
+        .map(Number);
 
-    console.log(Math.max(findMaxRocks(initialHeights), findMaxRocks(initialHeights, true)));
+    var peaks = [0];
 
-    function findMaxRocks(heights, isUp) {
-        let current,
-            count = 0,
-            best = -1;
-
-        isUp = !!isUp;
-        [current, ...heights] = heights;
-
-        for (let height of heights) {
-            if (isUp) {
-                if (current >= height) {
-                    isUp = !isUp;
-                    best = Math.max(best, count);
-                    count = 0;
-                }
-            } else {
-                if (current <= height) {
-                    isUp = !isUp;
-                }
-            }
-            count += 1;
-            current = height;
+    for (let i = 1; i < heights.length - 1; i += 1) {
+        if (isGreaterThanNeighbours(i, heights)) {
+            peaks.push(i);
         }
-        return Math.max(best, count);
+    }
+
+    peaks.push(heights.length - 1);
+
+    let bestCount = -1;
+    for (let i = 1; i < peaks.length; i += 1) {
+        bestCount = Math.max(bestCount, peaks[i] - peaks[i - 1]);
+    }
+
+
+    //result
+    console.log(bestCount);
+
+    function isGreaterThanNeighbours(index, arr) {
+        return arr[index - 1] < arr[index] &&
+            arr[index + 1] < arr[index];
     }
 }
 

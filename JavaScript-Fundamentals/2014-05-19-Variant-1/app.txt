@@ -1,0 +1,62 @@
+function solve(args) {
+    var lab = args.slice(1)
+        .map(row => row.split(" "));
+
+    let used = {};
+
+    let row = 0,
+        col = 0;
+
+    let sum = 0;
+
+    while (true) {
+        //  if row and col are in the labyrinth
+        //      return 'Success'
+        // if (row < 0 || row >= lab.length ||
+        //     col < 0 || col >= lab[0].length) {
+        if (!lab[row] || !lab[row][col]) {
+            console.log(`successed with ${sum}`);
+            return;
+        }
+        //  if row and col is visited
+        //      return 'Failed'
+        let code = `${row}:${col}`;
+        if (used[code]) {
+            console.log(`failed at (${row}, ${col})`);
+            return;
+        }
+        used[code] = true;
+        //  else
+        //      go to next cell
+        sum += (1 << row) + col;
+        let dir = lab[row][col];
+
+        let rowsUpdates = {
+            "dr": +1,
+            "dl": +1,
+            "ur": -1,
+            "ul": -1
+        };
+
+        let colsUpdates = {
+            "dr": +1,
+            "ur": +1,
+            "dl": -1,
+            "ul": -1
+        };
+
+        //update row
+        row += rowsUpdates[dir];
+        //update col
+        col += colsUpdates[dir];
+
+        //marked (row, col) as visited
+    }
+}
+let args = [
+'3 5',
+'dr dl dl ur ul',
+'dr dr ul ul ur',
+'dl dr ur dl ur'
+]
+solve(args);
