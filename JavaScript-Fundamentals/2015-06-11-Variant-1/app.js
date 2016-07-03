@@ -4,6 +4,7 @@
 
 let task1Solve = require("./task1");
 let task2Solve = require("./task2");
+let task3Solve = require("./task3");
 
 let task1Tests = [
     [
@@ -41,6 +42,34 @@ let task2Tests = [
     "d1 d3"
 ];
 
+let task3Test = [
+    "#the-big-b{",
+    "   color: yellow;",
+    "   size: big;",
+    "}",
+    ".muppet{",
+    "   powers: all;",
+    "  skin: fluffy;",
+    "}",
+    ".water-spirit{",
+    "   powers: water;",
+    "      alignment : not-good;",
+    "}",
+    "all{",
+    "    meant-for: nerdy-children;",
+    "}",
+    ".muppet {",
+    "   powers: everything;",
+    "}",
+    "all .muppet {",
+    "     alignment:good",
+    "}",
+    ".muppet+   .water-spirit{",
+    "    power: everything-a-muppet-can-do-and-water;",
+    "}",
+]
+
 // task1Tests.forEach(test => task1Solve(test));
 
-task2Solve(task2Tests);
+// task2Solve(task2Tests);
+task3Solve(task3Test);

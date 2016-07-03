@@ -1,4 +1,4 @@
-/* globals console */
+/* globals console module*/
 
 function solve(args) {
     let rows = +args[0];
@@ -53,21 +53,13 @@ function solve(args) {
     });
 
     function parseMove(moveStr) {
-        //d1 b3
-        //["d1", "b3"]
         let moveParts = moveStr.split(" ");
 
-        let colFromStr = moveParts[0][0];
-        let colFrom = colFromStr.charCodeAt(0) - "a".charCodeAt(0);
-
-        let colToStr = moveParts[1][0];
-        let colTo = colToStr.charCodeAt(0) - "a".charCodeAt(0);
-
         return {
-            "rowFrom": rows - moveParts[0][1],
-            "colFrom": colFrom,
-            "rowTo": rows - moveParts[1][1],
-            "colTo": colTo
+            "rowFrom": getRowMap(moveParts[0][1]),
+            "colFrom": getColMap(moveParts[0][0]),
+            "rowTo": getRowMap(moveParts[1][1]),
+            "colTo": moveParts[1][0]
         };
     }
 
@@ -93,6 +85,15 @@ function solve(args) {
         }
 
         return -1;
+    }
+
+    function getRowMap(row) {
+        return rows - row;
+    }
+
+    function getColMap(col) {
+        const aCharCode = "a".charCodeAt(0);
+        return col.charCodeAt(0) - aCharCode;
     }
 }
 
